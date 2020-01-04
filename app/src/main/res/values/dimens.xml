@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="current_dimen">200dp</dimen>
+    <dimen name="current_icon_dimen">150dp</dimen>
+    <dimen name="view_padding">10dp</dimen>
+    <dimen name="current_temp_text_size">50sp</dimen>
+    <dimen name="city_text_size">20sp</dimen>
+    <dimen name="margin_dimen">20dp</dimen>
+</resources>
