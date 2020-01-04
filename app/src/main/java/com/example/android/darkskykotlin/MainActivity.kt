@@ -7,13 +7,15 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    val API_KEY: String = BuildConfig.ApiKey
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        daily_recyclerview.apply{
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = DailyAdapter()
-        }
+//        daily_recyclerview.apply{
+//            layoutManager = LinearLayoutManager(this@MainActivity)
+//            adapter = DailyAdapter()
+//        }
     }
 }
