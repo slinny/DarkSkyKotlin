@@ -37,7 +37,7 @@
                 android:layout_height="0dp"
                 android:text="TextView"
                 android:gravity="center"
-                android:textSize="@dimen/city_text_size"
+                android:textSize="@dimen/current_city_text_size"
                 app:layout_constraintRight_toLeftOf="@id/current_icon_imageView"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -54,8 +54,7 @@
                 app:layout_constraintLeft_toRightOf="@id/temp_textview"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
-
+                app:srcCompat="@android:drawable/btn_star_big_on" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
