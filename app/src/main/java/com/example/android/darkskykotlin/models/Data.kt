@@ -1,11 +1,18 @@
 package com.example.android.darkskykotlin.models
 
-
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "dailyWeatherTable")
 data class Data(
+
+    @PrimaryKey(autoGenerate = true)
+    val dailyId:Int,
+    @SerializedName("time")
     val time: Int,
     val summary: String,
+    @SerializedName("icon")
     val icon: String,
     val sunriseTime: Int,
     val sunsetTime: Int,
@@ -15,8 +22,10 @@ data class Data(
     val precipIntensityMaxTime: Int,
     val precipProbability: Double,
     val precipType: String,
+    @SerializedName("tempHigh")
     val temperatureHigh: Double,
     val temperatureHighTime: Int,
+    @SerializedName("tempLow")
     val temperatureLow: Double,
     val temperatureLowTime: Int,
     val apparentTemperatureHigh: Double,

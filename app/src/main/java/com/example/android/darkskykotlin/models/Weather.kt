@@ -7,6 +7,7 @@ data class Weather(
     val latitude: Double,
     val longitude: Double,
     val timezone: String,
+    @SerializedName("currently")
     val currently: Currently,
     val daily: Daily
 )
