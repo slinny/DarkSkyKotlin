@@ -1,53 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="@dimen/item_dimen"
-    android:weightSum="5">
 
-    <TextView
-        android:id="@+id/day_textview"
-        android:text="day"
-        android:textSize="@dimen/item_text_size"
-        android:gravity="center"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:padding="@dimen/item_padding"
-        android:layout_margin="@dimen/item_padding"
-        />
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:padding="@dimen/item_padding"
-        android:gravity="center"
-        android:layout_margin="@dimen/item_padding"
-        android:layout_weight="1"
-        app:srcCompat="@android:drawable/ic_input_add" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_dimen"
+        android:orientation="horizontal"
+        android:weightSum="5">
 
-    <TextView
-        android:id="@+id/high_textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/item_padding"
-        android:gravity="center"
-        android:layout_margin="@dimen/item_padding"
-        android:layout_weight="1"
-        android:text="max"
-        android:textSize="@dimen/item_text_size"/>
+        <TextView
+            android:id="@+id/day_textview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/item_padding"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:padding="@dimen/item_padding"
+            android:text="day"
+            android:textSize="@dimen/item_text_size" />
 
-    <TextView
-        android:id="@+id/low_textView"
-        android:layout_width="0dp"
-        android:padding="@dimen/item_padding"
-        android:layout_margin="@dimen/item_padding"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="min"
-        android:textSize="@dimen/item_text_size"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/item_padding"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/item_padding"
+            app:srcCompat="@android:drawable/ic_input_add" />
 
+        <TextView
+            android:id="@+id/high_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_padding"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/item_padding"
+            android:text="max"
+            android:textSize="@dimen/item_text_size" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/low_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_padding"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/item_padding"
+            android:text="min"
+            android:textSize="@dimen/item_text_size" />
+
+    </LinearLayout>
+</layout>
