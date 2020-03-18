@@ -59,4 +59,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:2.0.0"
 
+    //location
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+
 }

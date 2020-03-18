@@ -6,6 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.android.darkskykotlin.database.WeatherDao
 
-class ViewModel(val database:WeatherDao, application: Application) :AndroidViewModel(application){
+class WeatherViewModel(val database:WeatherDao, application: Application) :AndroidViewModel(application){
 
 }

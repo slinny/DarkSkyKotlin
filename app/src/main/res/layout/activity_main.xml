@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
-            name="viewModel"
-            type="com.example.android.darkskykotlin.viewmodel.ViewModel" />
+            name="currentWeather"
+            type="com.example.android.darkskykotlin.vo.Currently" />
     </data>
 
     <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/no_network_textview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:padding="@dimen/view_padding"
+            android:text="NO NETWORK"
+            android:textSize="@dimen/no_network_text_size"
+            android:visibility="gone" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/current_cardview"
@@ -27,18 +37,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/temp_textview"
-                    android:layout_width="@dimen/current_dimen"
+                <ImageView
+                    android:id="@+id/current_icon_imageView"
+                    android:layout_width="@dimen/current_icon_dimen"
                     android:layout_height="@dimen/current_icon_dimen"
-                    android:gravity="center"
+                    android:contentDescription="weather icon"
                     android:padding="@dimen/view_padding"
-                    android:text="temp"
-                    android:textSize="@dimen/current_temp_text_size"
-                    app:layout_constraintBottom_toTopOf="@id/city_textView"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toLeftOf="@id/current_icon_imageView"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/temp_textview"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/btn_star_big_on" />
 
                 <TextView
                     android:id="@+id/city_textView"
@@ -53,17 +62,18 @@
                     app:layout_constraintRight_toLeftOf="@id/current_icon_imageView"
                     app:layout_constraintTop_toBottomOf="@id/temp_textview" />
 
-                <ImageView
-                    android:id="@+id/current_icon_imageView"
-                    android:layout_width="@dimen/current_icon_dimen"
+                <TextView
+                    android:id="@+id/temp_textview"
+                    android:layout_width="@dimen/current_dimen"
                     android:layout_height="@dimen/current_icon_dimen"
-                    android:contentDescription="weather icon"
+                    android:gravity="center"
                     android:padding="@dimen/view_padding"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/temp_textview"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/btn_star_big_on" />
+                    android:text="temp"
+                    android:textSize="@dimen/current_temp_text_size"
+                    app:layout_constraintBottom_toTopOf="@id/city_textView"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/current_icon_imageView"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -77,4 +87,5 @@
             android:padding="@dimen/view_padding" />
 
     </LinearLayout>
+
 </layout>

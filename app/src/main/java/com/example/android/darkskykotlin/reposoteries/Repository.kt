@@ -1,13 +1,19 @@
 package com.example.android.darkskykotlin.reposoteries
 
 import com.example.android.darkskykotlin.BuildConfig
-import com.example.android.darkskykotlin.models.Weather
+import com.example.android.darkskykotlin.database.WeatherDao
+import com.example.android.darkskykotlin.vo.Weather
 import com.example.android.darkskykotlin.networking.ApiService
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class Repository {
+class Repository
+constructor(
+    val apiService: ApiService,
+    val weatherDao: WeatherDao
+)
+{
 
     val BASE_URL = "https://api.darksky.net/forecast/"
     val API_KEY = BuildConfig.ApiKey
@@ -23,6 +29,17 @@ class Repository {
     }
 
     suspend fun fetchAllWeather(): Weather {
-        return retrofit().fetchWeather(lat,lon)
+        return retrofit().fetchAllWeather(lat,lon)
     }
+
+
+
+
+
+
+
+
+
+
+
 }

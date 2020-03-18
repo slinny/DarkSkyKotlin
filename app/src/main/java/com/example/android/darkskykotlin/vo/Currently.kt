@@ -1,6 +1,7 @@
-package com.example.android.darkskykotlin.models
+package com.example.android.darkskykotlin.vo
 
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -11,11 +12,14 @@ data class Currently(
     @PrimaryKey(autoGenerate = true)
     val currentId:Int,
     @SerializedName("time")
+    @ColumnInfo(name = "time")
     val time: Int,
     val summary: String,
     @SerializedName("icon")
+    @ColumnInfo(name = "icon")
     val icon: String,
     @SerializedName("temperature")
+    @ColumnInfo(name = "temperature")
     val temperature: Double,
     val nearestStormDistance: Int,
     val precipIntensity: Double,
