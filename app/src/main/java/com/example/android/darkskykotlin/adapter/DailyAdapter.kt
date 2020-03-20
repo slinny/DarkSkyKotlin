@@ -12,6 +12,8 @@ import com.example.android.darkskykotlin.vo.WeatherModel
 import java.text.SimpleDateFormat
 import java.util.*
 
+
+
 class DailyAdapter
     : RecyclerView.Adapter<DailyAdapter.ForecastViewHolder>() {
 
@@ -34,15 +36,11 @@ class DailyAdapter
 
     override fun onBindViewHolder(holder: ForecastViewHolder, position: Int) {
 
-        val day = if (position == 0) {
-            "Today"
-        } else {
-            // Convert UNIX seconds to milliseconds
-            val date = Date(dailyWeatherDataList[position].time * 1000)
-            val dateFormatter = SimpleDateFormat("EEEE", Locale.US)
-            dateFormatter.format(date)
-        }
-        holder.binding.dayOfWeek = day
+        val sdf = SimpleDateFormat("EEEE")
+        val dateFormat = java.util.Date(1493193408L * 1000)
+        val weekday = sdf.format(dateFormat)
+
+        holder.binding.dayOfWeek = weekday
         holder.binding.dailyWeatherData = dailyWeatherDataList[position]
         holder.binding.dailyHigh = dailyWeatherDataList[position]
         holder.binding.dailyLow = dailyWeatherDataList[position]

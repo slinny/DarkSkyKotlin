@@ -10,6 +10,8 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 const val BASE_URL = "https://api.darksky.net/forecast/"
+const val LATITUDE = 40.7128;
+const val LONTITUDE = -74.0060;
 
 interface ApiService {
 
@@ -23,10 +25,12 @@ interface ApiService {
         }
     }
 
-    @GET("forecast/{key}/{latitude},{longitude}")
+    @GET("{key}/{latitude},{longitude}")
     fun forecast(
         @Path("key") key: String,
         @Path("latitude") latitude: Double,
-        @Path("longitude") longitude: Double
+        @Path("longitude") longitude: Double,
+        @Query("units") units: String,
+        @Query("exclude") exclude: String
     ): Call<WeatherModel.Weather>
 }
