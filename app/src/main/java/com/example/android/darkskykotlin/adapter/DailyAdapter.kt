@@ -9,6 +9,7 @@ import com.example.android.darkskykotlin.R
 import com.example.android.darkskykotlin.databinding.ListItemDailyBinding
 import com.example.android.darkskykotlin.util.WeatherIcons
 import com.example.android.darkskykotlin.vo.WeatherModel
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,7 +38,7 @@ class DailyAdapter
     override fun onBindViewHolder(holder: ForecastViewHolder, position: Int) {
 
         val sdf = SimpleDateFormat("EEEE")
-        val dateFormat = java.util.Date(1493193408L * 1000)
+        val dateFormat = java.util.Date(dailyWeatherDataList[position].time * 1000)
         val weekday = sdf.format(dateFormat)
 
         holder.binding.dayOfWeek = weekday
@@ -51,9 +52,11 @@ class DailyAdapter
     }
 
     fun setDayForecast(dayForecast: MutableList<WeatherModel.Data>?) {
-        if (dayForecast != null) {
-            this.dailyWeatherDataList = dayForecast
+        if (dayForecast == null) {
+            Timber.e("dayForecast list passed in is null.")
+            return
         }
+        this.dailyWeatherDataList = dayForecast
         notifyDataSetChanged()
     }
 

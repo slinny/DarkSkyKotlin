@@ -38,13 +38,11 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     OnSuccessListener<Location>, OnFailureListener, Callback<GeocodingResponse>,
     PlaceSelectionListener {
 
-    // LiveData
     val requestLocationPermissionLiveData = MutableLiveData<Boolean>()
     val darkSkyApiResponseLiveData = MutableLiveData<WeatherModel.Weather>()
     val userFinishedSearchLiveData = MutableLiveData<Boolean>()
     val locationNameLiveData = MutableLiveData<String>()
 
-    // Create the Retrofit instance
     private val forecastAdi by lazy { ApiService.create() }
 
     private var userLocation: Location = DEFAULT_LOCATION
@@ -105,10 +103,6 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
             false
         }
     }
-
-    //
-    // Reverse geocode
-    //
 
     private fun getLocationName() {
         MapboxGeocoding.builder()

@@ -64,7 +64,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/item_padding"
-            android:text='@{String.format("%.0f%%", dailyHigh.precipProbability * 100)}'
+            android:text='@{String.format("%.0f°", dailyWeatherData.apparentTemperatureHigh) ?? "??°"}'
             android:textSize="@dimen/item_text_size" />
 
         <TextView
@@ -75,7 +75,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/item_padding"
-            android:text='@{String.format("%.0f%%", dailyLow.precipProbability * 100)}'
+            android:text='@{String.format("%.0f°", dailyWeatherData.apparentTemperatureLow) ?? "??°"}'
             android:textSize="@dimen/item_text_size" />
 
     </LinearLayout>

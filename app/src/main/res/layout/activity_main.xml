@@ -13,12 +13,12 @@
             type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
 
         <variable
-            name="currentCity"
-            type="String" />
-
-        <variable
             name="currentTemp"
             type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+
+        <variable
+            name="currentCity"
+            type="String" />
 
         <variable
             name="currentIcon"
