@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <import type="android.graphics.drawable.Drawable" />
+
+        <variable
+            name="dailyWeatherData"
+            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+
+        <variable
+            name="dayOfWeek"
+            type="String" />
+
+        <variable
+            name="dailyHigh"
+            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+
+        <variable
+            name="dailyLow"
+            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+
+        <variable
+            name="weatherIcon"
+            type="Drawable" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_dimen"
+        android:layout_margin="@dimen/item_padding"
+        android:orientation="horizontal"
+        android:padding="@dimen/item_padding"
+        android:weightSum="5">
+
+        <ImageView
+            android:id="@+id/daily_icon_imageView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/item_padding"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/item_padding"
+            android:src="@{weatherIcon ?? @drawable/ic_launcher_foreground}"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+        <TextView
+            android:id="@+id/daily_date_textview"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/item_padding"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:padding="@dimen/item_padding"
+            android:text="@{dayOfWeek}"
+            android:textSize="@dimen/item_text_size" />
+
+        <TextView
+            android:id="@+id/daily_high_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_padding"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/item_padding"
+            android:text='@{String.format("%.0f°", dailyWeatherData.apparentTemperatureHigh) ?? "??°"}'
+            android:textSize="@dimen/item_text_size" />
+
+        <TextView
+            android:id="@+id/daily_low_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/item_padding"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="@dimen/item_padding"
+            android:text='@{String.format("%.0f°", dailyWeatherData.apparentTemperatureLow) ?? "??°"}'
+            android:textSize="@dimen/item_text_size" />
+
+    </LinearLayout>
+
+</layout>
