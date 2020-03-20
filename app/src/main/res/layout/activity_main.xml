@@ -5,16 +5,31 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.graphics.drawable.Drawable" />
+
         <variable
             name="currentWeather"
-            type="com.example.android.darkskykotlin.vo.Currently" />
+            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+
+        <variable
+            name="currentCity"
+            type="String" />
+
+        <variable
+            name="currentTemp"
+            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+
+        <variable
+            name="currentIcon"
+            type="Drawable" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".ui.MainActivity">
 
         <TextView
             android:id="@+id/no_network_textview"
@@ -47,7 +62,8 @@
                     app:layout_constraintLeft_toRightOf="@id/temp_textview"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/btn_star_big_on" />
+                    app:srcCompat="@android:drawable/btn_star_big_on"
+                    android:src="@{currentIcon ?? @drawable/ic_launcher_foreground}"/>
 
                 <TextView
                     android:id="@+id/city_textView"
@@ -55,7 +71,7 @@
                     android:layout_height="0dp"
                     android:gravity="center"
                     android:padding="@dimen/view_padding"
-                    android:text="TextView"
+                    android:text="@{currentCity}"
                     android:textSize="@dimen/current_city_text_size"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -68,7 +84,7 @@
                     android:layout_height="@dimen/current_icon_dimen"
                     android:gravity="center"
                     android:padding="@dimen/view_padding"
-                    android:text="temp"
+                    android:text='@{String.format("%.0f°", currentTemp.temperature) ?? "??°"}'
                     android:textSize="@dimen/current_temp_text_size"
                     app:layout_constraintBottom_toTopOf="@id/city_textView"
                     app:layout_constraintLeft_toLeftOf="parent"

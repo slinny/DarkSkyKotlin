@@ -2,9 +2,27 @@
 <layout>
 
     <data>
+        <import type="android.graphics.drawable.Drawable" />
+
         <variable
             name="dailyWeatherData"
-            type="com.example.android.darkskykotlin.vo.DailyData" />
+            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+
+        <variable
+            name="dayOfWeek"
+            type="String" />
+
+        <variable
+            name="dailyHigh"
+            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+
+        <variable
+            name="dailyLow"
+            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+
+        <variable
+            name="weatherIcon"
+            type="Drawable" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -24,6 +42,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/item_padding"
+            android:src="@{weatherIcon ?? @drawable/ic_launcher_foreground}"
             app:srcCompat="@android:drawable/ic_input_add" />
 
         <TextView
@@ -34,7 +53,7 @@
             android:layout_weight="2"
             android:gravity="center"
             android:padding="@dimen/item_padding"
-            android:text="day"
+            android:text="@{dayOfWeek}"
             android:textSize="@dimen/item_text_size" />
 
         <TextView
@@ -45,7 +64,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/item_padding"
-            android:text="max"
+            android:text='@{String.format("%.0f%%", dailyHigh.precipProbability * 100)}'
             android:textSize="@dimen/item_text_size" />
 
         <TextView
@@ -56,7 +75,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/item_padding"
-            android:text="min"
+            android:text='@{String.format("%.0f%%", dailyLow.precipProbability * 100)}'
             android:textSize="@dimen/item_text_size" />
 
     </LinearLayout>
