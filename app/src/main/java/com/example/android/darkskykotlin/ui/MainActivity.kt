@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.getUsersCurrentLocation()
 
-        daily_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        daily_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         daily_recyclerview.adapter = adapter
     }
 
