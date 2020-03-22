@@ -1,8 +1,5 @@
 package com.example.android.darkskykotlin.vo
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-
 object WeatherModel {
 
     data class Weather(
