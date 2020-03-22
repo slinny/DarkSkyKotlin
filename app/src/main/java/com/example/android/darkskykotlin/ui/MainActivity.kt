@@ -68,14 +68,14 @@ class MainActivity : AppCompatActivity() {
             binding.currentCity = locationName
         })
 
-        viewModel.weatherApiResponseLiveData.observe(this, Observer { darkSkyModel ->
-            binding.currentTemp = darkSkyModel.currently
+        viewModel.weatherApiResponseLiveData.observe(this, Observer { weatherModel ->
+            binding.currentTemp = weatherModel.currently
 
-            adapter.setDayForecast(darkSkyModel.daily.data)
+            adapter.setDayForecast(weatherModel.daily.data)
 
             // Bind the current weather icon
-            if (darkSkyModel.currently.icon != null && weatherIconMap != null) {
-                binding.currentIcon = weatherIconMap!![darkSkyModel.currently.icon]
+            if (weatherModel.currently.icon != null && weatherIconMap != null) {
+                binding.currentIcon = weatherIconMap!![weatherModel.currently.icon]
             }
         })
     }
