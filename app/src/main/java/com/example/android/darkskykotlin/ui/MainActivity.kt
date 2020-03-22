@@ -1,34 +1,21 @@
 package com.example.android.darkskykotlin.ui
 
 import android.Manifest
-import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.android.darkskykotlin.BuildConfig
 import com.example.android.darkskykotlin.R
 import com.example.android.darkskykotlin.adapter.DailyAdapter
 import com.example.android.darkskykotlin.databinding.ActivityMainBinding
-import com.example.android.darkskykotlin.networking.ApiService
-import com.example.android.darkskykotlin.networking.LATITUDE
-import com.example.android.darkskykotlin.networking.LONTITUDE
 import com.example.android.darkskykotlin.util.WeatherIcons
 import com.example.android.darkskykotlin.viewmodel.WeatherViewModel
-import com.example.android.darkskykotlin.vo.WeatherModel
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import timber.log.Timber
 
 const val REQUEST_COARSE_LOCATION = 5678
@@ -46,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProviders.of(this).get(WeatherViewModel::class.java)
+
         addObservers()
 
         weatherIconMap = WeatherIcons.map(this)

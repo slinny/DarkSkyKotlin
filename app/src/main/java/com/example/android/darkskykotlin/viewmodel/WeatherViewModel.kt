@@ -43,18 +43,16 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     val userFinishedSearchLiveData = MutableLiveData<Boolean>()
     val locationNameLiveData = MutableLiveData<String>()
 
-    private val forecastAdi by lazy { ApiService.create() }
+    private val forecastApi by lazy { ApiService.create() }
 
     private var userLocation: Location = DEFAULT_LOCATION
     private val appContext = getApplication() as Context
 
     private fun fetchForecastAtLocation(latitude: Double, longitude: Double) {
-        forecastAdi.forecast(
+        forecastApi.forecast(
             BuildConfig.ApiKey,
             latitude,
-            longitude,
-            "us",
-            arrayListOf("minutely", "hourly", "alerts", "flags").toString())
+            longitude)
             .enqueue(object : Callback<WeatherModel.Weather> {
                 override fun onResponse(call: Call<WeatherModel.Weather>, response: Response<WeatherModel.Weather>) {
                     Timber.v("API Url call ${call.request().url()}")
