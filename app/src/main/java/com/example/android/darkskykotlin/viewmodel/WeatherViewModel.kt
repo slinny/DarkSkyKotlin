@@ -39,7 +39,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     PlaceSelectionListener {
 
     val requestLocationPermissionLiveData = MutableLiveData<Boolean>()
-    val darkSkyApiResponseLiveData = MutableLiveData<WeatherModel.Weather>()
+    val weatherApiResponseLiveData = MutableLiveData<WeatherModel.Weather>()
     val userFinishedSearchLiveData = MutableLiveData<Boolean>()
     val locationNameLiveData = MutableLiveData<String>()
 
@@ -62,7 +62,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
                         return
                     }
                     // Pass information to the view
-                    darkSkyApiResponseLiveData.value = response.body()
+                    weatherApiResponseLiveData.value = response.body()
                 }
 
                 override fun onFailure(call: Call<WeatherModel.Weather>, throwable: Throwable) {

@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             binding.currentCity = locationName
         })
 
-        viewModel.darkSkyApiResponseLiveData.observe(this, Observer { darkSkyModel ->
+        viewModel.weatherApiResponseLiveData.observe(this, Observer { darkSkyModel ->
             binding.currentTemp = darkSkyModel.currently
 
             adapter.setDayForecast(darkSkyModel.daily.data)
