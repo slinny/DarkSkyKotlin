@@ -10,7 +10,7 @@
 
         <variable
             name="currentWeather"
-            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+            type="com.example.android.darkskykotlin.vo.Data" />
     </data>
 
     <LinearLayout

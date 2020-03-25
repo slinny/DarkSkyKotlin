@@ -1,6 +1,6 @@
 package com.example.android.darkskykotlin.networking
 
-import com.example.android.darkskykotlin.vo.WeatherModel
+import com.example.android.darkskykotlin.vo.Weather
 import com.google.android.gms.common.api.Api
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -30,5 +30,5 @@ interface ApiService {
         @Path("key") key: String,
         @Path("latitude") latitude: Double,
         @Path("longitude") longitude: Double
-    ): Call<WeatherModel.Weather>
+    ): Call<Weather>
 }

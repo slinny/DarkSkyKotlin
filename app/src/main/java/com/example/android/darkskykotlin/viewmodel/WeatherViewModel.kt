@@ -10,7 +10,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.android.darkskykotlin.BuildConfig
 import com.example.android.darkskykotlin.networking.ApiService
-import com.example.android.darkskykotlin.vo.WeatherModel
+import com.example.android.darkskykotlin.vo.Weather
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -39,7 +39,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     PlaceSelectionListener {
 
     val requestLocationPermissionLiveData = MutableLiveData<Boolean>()
-    val weatherApiResponseLiveData = MutableLiveData<WeatherModel.Weather>()
+    val weatherApiResponseLiveData = MutableLiveData<Weather>()
     val userFinishedSearchLiveData = MutableLiveData<Boolean>()
     val locationNameLiveData = MutableLiveData<String>()
 
@@ -53,8 +53,8 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
             BuildConfig.ApiKey,
             latitude,
             longitude)
-            .enqueue(object : Callback<WeatherModel.Weather> {
-                override fun onResponse(call: Call<WeatherModel.Weather>, response: Response<WeatherModel.Weather>) {
+            .enqueue(object : Callback<Weather> {
+                override fun onResponse(call: Call<Weather>, response: Response<Weather>) {
                     Timber.v("API Url call ${call.request().url()}")
                     if (!response.isSuccessful || response.body() == null) {
                         return
@@ -63,7 +63,7 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
                     weatherApiResponseLiveData.value = response.body()
                 }
 
-                override fun onFailure(call: Call<WeatherModel.Weather>, throwable: Throwable) {
+                override fun onFailure(call: Call<Weather>, throwable: Throwable) {
                     Timber.e(throwable, "Error trying to fetch the user's location forecast.")
                 }
             })

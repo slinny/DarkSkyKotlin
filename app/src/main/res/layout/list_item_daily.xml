@@ -6,7 +6,7 @@
 
         <variable
             name="dailyWeatherData"
-            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+            type="com.example.android.darkskykotlin.vo.Data" />
 
         <variable
             name="dayOfWeek"
@@ -14,11 +14,11 @@
 
         <variable
             name="dailyHigh"
-            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+            type="com.example.android.darkskykotlin.vo.Data" />
 
         <variable
             name="dailyLow"
-            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+            type="com.example.android.darkskykotlin.vo.Data" />
 
         <variable
             name="weatherIcon"

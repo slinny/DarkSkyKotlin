@@ -1,10 +1,7 @@
 package com.example.android.darkskykotlin.vo
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 
-
-object WeatherModel {
+//object WeatherModel {
 
 //    MODELSET 1
     data class Weather(
@@ -47,7 +44,7 @@ data class Data(
     val visibility: Double?,
     val ozone: Double?
 )
-}
+//}
 
 
 
