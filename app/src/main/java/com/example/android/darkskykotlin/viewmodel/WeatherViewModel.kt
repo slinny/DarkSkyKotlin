@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.android.darkskykotlin.BuildConfig
+import com.example.android.darkskykotlin.database.WeatherDao
 import com.example.android.darkskykotlin.networking.ApiService
 import com.example.android.darkskykotlin.vo.Weather
 import com.google.android.gms.location.LocationServices
@@ -34,7 +35,10 @@ val DEFAULT_LOCATION = Location("default").apply {
     longitude = -74.0060
 }
 
-class WeatherViewModel(application: Application) : AndroidViewModel(application),
+class WeatherViewModel(
+    weatherDao: WeatherDao,
+    application: Application
+) : AndroidViewModel(application),
     OnSuccessListener<Location>, OnFailureListener, Callback<GeocodingResponse>,
     PlaceSelectionListener {
 

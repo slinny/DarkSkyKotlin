@@ -14,9 +14,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.darkskykotlin.R
 import com.example.android.darkskykotlin.adapter.DailyAdapter
+import com.example.android.darkskykotlin.database.WeatherDatabase
 import com.example.android.darkskykotlin.databinding.FragmentWeatherBinding
 import com.example.android.darkskykotlin.util.WeatherIcons
 import com.example.android.darkskykotlin.viewmodel.WeatherViewModel
+import com.example.android.darkskykotlin.viewmodel.WeatherViewModelFactory
 import kotlinx.android.synthetic.main.fragment_weather.*
 
 /**
@@ -24,10 +26,7 @@ import kotlinx.android.synthetic.main.fragment_weather.*
  */
 class WeatherFragment : Fragment() {
 
-    private lateinit var viewModel: WeatherViewModel
-
     private var weatherIconMap: Map<String, Drawable>? = null
-
     private val adapter = DailyAdapter()
 
     override fun onCreateView(
@@ -39,16 +38,22 @@ class WeatherFragment : Fragment() {
             inflater,
             R.layout.fragment_weather, container, false
         )
-        viewModel = ViewModelProviders.of(this).get(WeatherViewModel::class.java)
 
-        viewModel.weatherApiResponseLiveData.observe(this, Observer { weatherModel ->
+        val application = requireNotNull(this.activity).application
+        val dataSource = WeatherDatabase.getInstance(application).weatherDao
+        val viewModelFactory = WeatherViewModelFactory(dataSource, application)
+        val weatherViewModel =
+            ViewModelProviders.of(
+                this, viewModelFactory).get(WeatherViewModel::class.java)
+
+        weatherViewModel.weatherApiResponseLiveData.observe(this, Observer { weatherModel ->
 
             adapter.setDayForecast(weatherModel.daily.data)
         })
 
         weatherIconMap = WeatherIcons.map(this.context!!)
 
-        viewModel.getUsersCurrentLocation()
+        weatherViewModel.getUsersCurrentLocation()
 
         binding.dailyRecyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
