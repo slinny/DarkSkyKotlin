@@ -45,41 +45,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addObservers() {
-        viewModel.requestLocationPermissionLiveData.observe(this, Observer { shouldRequestPermission ->
-            if (shouldRequestPermission) {
-                Timber.v("requesting permission")
-                requestPermissions()
-            }
-        })
-
-        viewModel.locationNameLiveData.observe(this, Observer { locationName ->
-            binding.currentCity = locationName
-        })
 
         viewModel.weatherApiResponseLiveData.observe(this, Observer { weatherModel ->
-            binding.currentTemp = weatherModel.currently
 
             adapter.setDayForecast(weatherModel.daily.data)
-
-            // Bind the current weather icon
-            if (weatherModel.currently.icon != null && weatherIconMap != null) {
-                binding.currentIcon = weatherIconMap!![weatherModel.currently.icon]
-            }
         })
-    }
-
-    private fun requestPermissions() {
-        ActivityCompat.requestPermissions(this,
-            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_COARSE_LOCATION)
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if (requestCode == REQUEST_COARSE_LOCATION && grantResults.isNotEmpty()
-            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Timber.v("User gave location permission, continue with getting user's last location.")
-            viewModel.getUsersCurrentLocation()
-        } else {
-            Timber.v("User refused to give location permission. Continue using the default location.")
-        }
     }
 }
