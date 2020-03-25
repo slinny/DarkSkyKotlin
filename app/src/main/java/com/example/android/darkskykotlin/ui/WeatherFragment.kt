@@ -53,7 +53,7 @@ class WeatherFragment : Fragment() {
 
         weatherIconMap = WeatherIcons.map(this.context!!)
 
-        weatherViewModel.getUsersCurrentLocation()
+        weatherViewModel.fetchForecastAtLocation()
 
         binding.dailyRecyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)

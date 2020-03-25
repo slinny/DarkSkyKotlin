@@ -14,7 +14,10 @@ interface WeatherDao {
     fun getAllDailyData(): LiveData<List<Data>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDailyData(data: Data)
+    fun insertDailyData(data: MutableList<Data>)
+
+//    @Query("SELECT * FROM daily_weather_table ORDER BY time DESC LIMIT 1")
+//    fun getDailyData(): Data?
 
     @Query("DELETE FROM daily_weather_table")
     fun removeAllDailyData()
