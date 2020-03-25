@@ -1,10 +1,10 @@
 package com.example.android.darkskykotlin.vo
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-//object WeatherModel {
-
-//    MODELSET 1
-    data class Weather(
+data class Weather(
     val latitude: Double,
     val longitude: Double,
     val timezone: String,
@@ -17,34 +17,18 @@ data class Daily(
     val data: MutableList<Data>
 )
 
+@Entity(tableName = "daily_weather_table")
 data class Data(
+    @PrimaryKey
+    @ColumnInfo(name = "time")
     val time: Long,
-    val summary: String? = "",
+    @ColumnInfo(name = "icon")
     val icon: String? = "",
-    val nearestStormDistance: Int?,
-    val nearestStormBearing: Int?,
-    val precipIntensity: Double?,
-    val precipProbability: Double?,
-    val temperature: Double?,
-    val apparentTemperature: Double?,
+    @ColumnInfo(name = "daily_high")
     val apparentTemperatureHigh: Double?,
-    val apparentTemperatureLow: Double?,
-    val apparentTemperatureHighTime: Long?,
-    val apparentTemperatureLowTime: Long?,
-    val dewPoint: Double?,
-    val humidity: Double?,
-    val pressure: Double?,
-    val windSpeed: Double?,
-    val windGust: Double?,
-    val windGustTime: Long?,
-    val windBearing: Int?,
-    val cloudCover: Double?,
-    val uvIndex: Int?,
-    val uvIndexTime: Long?,
-    val visibility: Double?,
-    val ozone: Double?
+    @ColumnInfo(name = "daily_low")
+    val apparentTemperatureLow: Double?
 )
-//}
 
 
 

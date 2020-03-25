@@ -29,6 +29,16 @@
             android:textSize="@dimen/no_network_text_size"
             android:visibility="gone" />
 
+        <TextView
+            android:id="@+id/city_textview"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:padding="@dimen/view_padding"
+            android:gravity="center_horizontal"
+            android:text="New York"
+            android:textSize="@dimen/current_temp_text_size" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/daily_recyclerview"
             android:layout_width="match_parent"

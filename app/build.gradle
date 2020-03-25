@@ -52,7 +52,8 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     //testing
-    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+//    testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
@@ -103,5 +104,7 @@ dependencies {
     // support libraries
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
+
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.1.0"
 
 }

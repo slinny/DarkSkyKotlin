@@ -41,7 +41,7 @@ class DataBaseTest {
     fun insertAndGetWeatherData() {
 //        val dailyItem = WeatherModel().daily.data
 //        weatherDao.addDailyData(dailyItem)
-        val dailyHigh = weatherDao.getAllDailyData().temperatureHigh
+        val dailyHigh = weatherDao.getAllDailyData().getValue()?.get(0)?.apparentTemperatureHigh
         Assert.assertEquals(dailyHigh, null)
     }
 
