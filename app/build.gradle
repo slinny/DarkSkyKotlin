@@ -24,14 +24,14 @@ android {
         enabled = true
     }
     buildTypes {
-        debug{
+        debug {
             buildConfigField 'String', "ApiKey", API_KEY
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField ('String', "ApiKey", API_KEY)
-            buildConfigField ('String', "Token", MAPBOX_ACCESS_TOKEN)
+            buildConfigField('String', "ApiKey", API_KEY)
+            buildConfigField('String', "Token", MAPBOX_ACCESS_TOKEN)
         }
     }
 }

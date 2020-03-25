@@ -6,11 +6,6 @@
 
     <data>
 
-        <import type="android.graphics.drawable.Drawable" />
-
-        <variable
-            name="currentWeather"
-            type="com.example.android.darkskykotlin.vo.Data" />
     </data>
 
     <LinearLayout
@@ -19,31 +14,41 @@
         android:orientation="vertical"
         tools:context=".ui.MainActivity">
 
-        <TextView
-            android:id="@+id/no_network_textview"
+        <fragment
+            android:id="@+id/myNavHostFragment"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:padding="@dimen/view_padding"
-            android:text="NO NETWORK"
-            android:textSize="@dimen/no_network_text_size"
-            android:visibility="gone" />
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/navigation">
 
-        <TextView
-            android:id="@+id/city_textview"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:padding="@dimen/view_padding"
-            android:gravity="center_horizontal"
-            android:text="New York"
-            android:textSize="@dimen/current_temp_text_size" />
+        </fragment>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/daily_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/view_padding" />
+<!--        <TextView-->
+<!--            android:id="@+id/no_network_textview"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:padding="@dimen/view_padding"-->
+<!--            android:text="NO NETWORK"-->
+<!--            android:textSize="@dimen/no_network_text_size"-->
+<!--            android:visibility="gone" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/city_textview"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:padding="@dimen/view_padding"-->
+<!--            android:gravity="center_horizontal"-->
+<!--            android:text="New York"-->
+<!--            android:textSize="@dimen/current_temp_text_size" />-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/daily_recyclerview"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="@dimen/view_padding" />-->
 
     </LinearLayout>
 
