@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
-interface VideoDao {
+interface WeatherDao {
     @Query("SELECT * FROM databaseweather")
     fun getAllDailyData(): LiveData<List<DatabaseWeather>>
 
@@ -18,7 +18,7 @@ interface VideoDao {
 
 @Database(entities = [DatabaseWeather::class], version = 1)
 abstract class WeatherDatabase: RoomDatabase() {
-    abstract val videoDao: VideoDao
+    abstract val weatherDao: WeatherDao
 }
 
 private lateinit var INSTANCE: WeatherDatabase
