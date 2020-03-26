@@ -4,25 +4,124 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import com.example.android.darkskykotlin.BuildConfig
-//import com.example.android.darkskykotlin.database.WeatherDao
-//import com.example.android.darkskykotlin.database.WeatherDatabase
-import com.example.android.darkskykotlin.networking.ApiService
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.android.darkskykotlin.database.getDatabase
 import com.example.android.darkskykotlin.repository.WeatherRepository
-import com.example.android.darkskykotlin.vo.Data
-import com.example.android.darkskykotlin.vo.Weather
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import timber.log.Timber
+import java.io.IOException
 
 class WeatherViewModel(
-//    val weatherDao: WeatherDao,
     application: Application
 ) : AndroidViewModel(application)
 {
+
+    /**
+     * The data source this ViewModel will fetch results from.
+     */
+    private val weatherRepository = WeatherRepository(getDatabase(application))
+
+    /**
+     * A playlist of dailyWeatherData displayed on the screen.
+     */
+    val dailyWeatherList = weatherRepository.dailyDataList
+
+    /**
+     * This is the job for all coroutines started by this ViewModel.
+     *
+     * Cancelling this job will cancel all coroutines started by this ViewModel.
+     */
+    private val weatherModelJob = SupervisorJob()
+
+    /**
+     * This is the main scope for all coroutines launched by MainViewModel.
+     *
+     * Since we pass viewModelJob, you can cancel all coroutines launched by uiScope by calling
+     * viewModelJob.cancel()
+     */
+    private val viewModelScope = CoroutineScope(weatherModelJob + Dispatchers.Main)
+
+    /**
+     * Event triggered for network error. This is private to avoid exposing a
+     * way to set this value to observers.
+     */
+    private var _eventNetworkError = MutableLiveData<Boolean>(false)
+
+    /**
+     * Event triggered for network error. Views should use this to get access
+     * to the data.
+     */
+    val eventNetworkError: LiveData<Boolean>
+        get() = _eventNetworkError
+
+    /**
+     * Flag to display the error message. This is private to avoid exposing a
+     * way to set this value to observers.
+     */
+    private var _isNetworkErrorShown = MutableLiveData<Boolean>(false)
+
+    /**
+     * Flag to display the error message. Views should use this to get access
+     * to the data.
+     */
+    val isNetworkErrorShown: LiveData<Boolean>
+        get() = _isNetworkErrorShown
+
+    /**
+     * init{} is called immediately when this ViewModel is created.
+     */
+    init {
+        refreshDataFromRepository()
+    }
+
+    /**
+     * Refresh data from the repository. Use a coroutine launch to run in a
+     * background thread.
+     */
+    private fun refreshDataFromRepository() {
+        viewModelScope.launch {
+            try {
+                weatherRepository.refreshDailyData()
+                _eventNetworkError.value = false
+                _isNetworkErrorShown.value = false
+
+            } catch (networkError: IOException) {
+                // Show a Toast error message and hide the progress bar.
+                if(dailyWeatherList.value!!.isEmpty())
+                    _eventNetworkError.value = true
+            }
+        }
+    }
+
+
+    /**
+     * Resets the network error flag.
+     */
+    fun onNetworkErrorShown() {
+        _isNetworkErrorShown.value = true
+    }
+
+
+    /**
+     * Cancel all coroutines when the ViewModel is cleared
+     */
+    override fun onCleared() {
+        super.onCleared()
+        weatherModelJob.cancel()
+    }
+
+    /**
+     * Factory for constructing ViewModel with parameter
+     */
+    class WeatherViewModelFactory(val app: Application) : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(WeatherViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return WeatherViewModel(app) as T
+            }
+            throw IllegalArgumentException("Unable to construct viewmodel")
+        }
+    }
 
 //    private val weatherResponse = WeatherRepository(WeatherDatabase.getInstance(application))
 //

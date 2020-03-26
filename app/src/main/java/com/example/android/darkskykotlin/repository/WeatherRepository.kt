@@ -21,11 +21,11 @@ class WeatherRepository(
     private val database: WeatherDatabase
 ) {
 
-    val videos: LiveData<List<Data>> = Transformations.map(database.weatherDao.getAllDailyData()) {
+    val dailyDataList: LiveData<List<Data>> = Transformations.map(database.weatherDao.getAllDailyData()) {
         it.asDomainModel()
     }
 
-    suspend fun refreshVideos() {
+    suspend fun refreshDailyData() {
         withContext(Dispatchers.IO) {
             Timber.d("refresh weather is called");
             val playlist = WeatherNetwork.apiService.forecast(
