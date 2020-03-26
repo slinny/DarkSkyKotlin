@@ -6,6 +6,8 @@ import androidx.lifecycle.Transformations
 import com.example.android.darkskykotlin.BuildConfig
 //import com.example.android.darkskykotlin.database.WeatherDatabase
 import com.example.android.darkskykotlin.networking.ApiService
+import com.example.android.darkskykotlin.networking.LATITUDE
+import com.example.android.darkskykotlin.networking.LONTITUDE
 import com.example.android.darkskykotlin.vo.Data
 import com.example.android.darkskykotlin.vo.Weather
 import retrofit2.Call
@@ -21,9 +23,6 @@ class WeatherRepository(
 //        it.asDomainModel()
 //    }
 
-    val latitude = 40.7128
-    val longitude = -74.0060
-
     val weatherApiResponseLiveData = MutableLiveData<Weather>()
 
     private val forecastApi by lazy { ApiService.create() }
@@ -31,8 +30,8 @@ class WeatherRepository(
     fun fetchForecastAtLocation() {
         forecastApi.forecast(
             BuildConfig.ApiKey,
-            latitude,
-            longitude)
+            LATITUDE,
+            LONTITUDE)
             .enqueue(object : Callback<Weather> {
                 override fun onResponse(call: Call<Weather>, response: Response<Weather>) {
                     Timber.v("API Url call ${call.request().url()}")
