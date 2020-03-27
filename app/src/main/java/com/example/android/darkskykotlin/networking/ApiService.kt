@@ -18,13 +18,15 @@ const val API_KEY = BuildConfig.ApiKey
  */
 interface ApiService {
 
-        @GET("{key}/{latitude},{longitude}")
+    @GET("{key}/{latitude},{longitude}")
     fun forecast(
             @Path("key") key: String,
             @Path("latitude") latitude: Double,
             @Path("longitude") longitude: Double
     ): Deferred<WeatherContainer>
 }
+
+//returns weather but need datas
 
 /**
  * Main entry point for network access. Call like `WeatherNetwork.apiService.forecast(API_KEY,LATITUDE,LONTITUDE)`

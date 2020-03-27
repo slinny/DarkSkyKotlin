@@ -5,6 +5,10 @@
     tools:context=".ui.WeatherFragment">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.example.android.darkskykotlin.viewmodel.WeatherViewModel" />
+
         <import type="android.graphics.drawable.Drawable" />
 
         <variable

@@ -28,7 +28,7 @@ fun getDatabase(context: Context): WeatherDatabase {
         if (!::INSTANCE.isInitialized) {
             INSTANCE = Room.databaseBuilder(context.applicationContext,
                 WeatherDatabase::class.java,
-                "videos").build()
+                "dailyDatas").build()
         }
     }
     return INSTANCE

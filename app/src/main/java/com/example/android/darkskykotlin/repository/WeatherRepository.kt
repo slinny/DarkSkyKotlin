@@ -1,20 +1,16 @@
 package com.example.android.darkskykotlin.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.example.android.darkskykotlin.BuildConfig
+import com.example.android.darkskykotlin.database.DatabaseWeather
 import com.example.android.darkskykotlin.database.WeatherDatabase
 import com.example.android.darkskykotlin.database.asDomainModel
 import com.example.android.darkskykotlin.networking.*
 //import com.example.android.darkskykotlin.database.WeatherDatabase
 import com.example.android.darkskykotlin.vo.Data
-import com.example.android.darkskykotlin.vo.Weather
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import timber.log.Timber
 
 class WeatherRepository(
@@ -28,15 +24,16 @@ class WeatherRepository(
     suspend fun refreshDailyData() {
         withContext(Dispatchers.IO) {
             Timber.d("refresh weather is called");
-            val playlist = WeatherNetwork.apiService.forecast(
+            val dailyDatas = WeatherNetwork.apiService.forecast(
                 BuildConfig.ApiKey,
                 LATITUDE,
                 LONTITUDE).await()
-            database.weatherDao.insertDailyData(playlist.asDatabaseModel())
+//            val dailyDatas = weatherData.datas
+            database.weatherDao.insertDailyData(dailyDatas.asDatabaseModel())
         }
     }
 
-
+//???
 
 
 
@@ -67,3 +64,5 @@ class WeatherRepository(
 //    }
 
 }
+
+
