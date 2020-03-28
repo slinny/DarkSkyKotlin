@@ -1,35 +1,18 @@
 package com.example.android.darkskykotlin.ui
 
-import android.Manifest
-import android.content.Context
-import android.content.pm.PackageManager
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.android.darkskykotlin.BuildConfig
 import com.example.android.darkskykotlin.R
 import com.example.android.darkskykotlin.adapter.DailyAdapter
 import com.example.android.darkskykotlin.databinding.ActivityMainBinding
-import com.example.android.darkskykotlin.networking.ApiService
-import com.example.android.darkskykotlin.networking.LATITUDE
-import com.example.android.darkskykotlin.networking.LONTITUDE
 import com.example.android.darkskykotlin.util.WeatherIcons
 import com.example.android.darkskykotlin.viewmodel.WeatherViewModel
-import com.example.android.darkskykotlin.vo.WeatherModel
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,14 +40,14 @@ class MainActivity : AppCompatActivity() {
     private fun addObservers() {
             binding.currentCity = "New York"
 
-        viewModel.darkSkyApiResponseLiveData.observe(this, Observer { darkSkyModel ->
-            binding.currentTemp = darkSkyModel.currently
+        viewModel.darkSkyApiResponseLiveData.observe(this, Observer { weather ->
+            binding.currentTemp = weather.currently
 
-            adapter.setDayForecast(darkSkyModel.daily.data)
+            adapter.setDayForecast(weather.daily.data)
 
             // Bind the current weather icon
-            if (darkSkyModel.currently.icon != null && weatherIconMap != null) {
-                binding.currentIcon = weatherIconMap!![darkSkyModel.currently.icon]
+            if (weather.currently.icon != null && weatherIconMap != null) {
+                binding.currentIcon = weatherIconMap!![weather.currently.icon]
             }
         })
     }

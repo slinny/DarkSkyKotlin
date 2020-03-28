@@ -10,11 +10,11 @@
 
         <variable
             name="currentWeather"
-            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+            type="com.example.android.darkskykotlin.vo.Currently" />
 
         <variable
             name="currentTemp"
-            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+            type="com.example.android.darkskykotlin.vo.Currently" />
 
         <variable
             name="currentCity"

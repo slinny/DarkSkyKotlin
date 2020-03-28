@@ -6,7 +6,7 @@
 
         <variable
             name="dailyWeatherData"
-            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+            type="com.example.android.darkskykotlin.vo.Data" />
 
         <variable
             name="dayOfWeek"
@@ -14,11 +14,11 @@
 
         <variable
             name="dailyHigh"
-            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+            type="com.example.android.darkskykotlin.vo.Data" />
 
         <variable
             name="dailyLow"
-            type="com.example.android.darkskykotlin.vo.WeatherModel.Data" />
+            type="com.example.android.darkskykotlin.vo.Data" />
 
         <variable
             name="weatherIcon"
@@ -64,7 +64,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/item_padding"
-            android:text='@{String.format("%.0f°", dailyWeatherData.apparentTemperatureHigh) ?? "??°"}'
+            android:text='@{String.format("%.0f°", dailyWeatherData.temperatureHigh) ?? "??°"}'
             android:textSize="@dimen/item_text_size" />
 
         <TextView
@@ -75,7 +75,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/item_padding"
-            android:text='@{String.format("%.0f°", dailyWeatherData.apparentTemperatureLow) ?? "??°"}'
+            android:text='@{String.format("%.0f°", dailyWeatherData.temperatureLow) ?? "??°"}'
             android:textSize="@dimen/item_text_size" />
 
     </LinearLayout>

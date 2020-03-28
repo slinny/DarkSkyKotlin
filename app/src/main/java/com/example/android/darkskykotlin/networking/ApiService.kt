@@ -1,13 +1,11 @@
 package com.example.android.darkskykotlin.networking
 
-import com.example.android.darkskykotlin.vo.WeatherModel
-import com.google.android.gms.common.api.Api
+import com.example.android.darkskykotlin.vo.Weather
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
 const val BASE_URL = "https://api.darksky.net/forecast/"
 const val LATITUDE = 40.7128;
@@ -30,5 +28,5 @@ interface ApiService {
         @Path("key") key: String,
         @Path("latitude") latitude: Double,
         @Path("longitude") longitude: Double
-    ): Call<WeatherModel.Weather>
+    ): Call<Weather>
 }
