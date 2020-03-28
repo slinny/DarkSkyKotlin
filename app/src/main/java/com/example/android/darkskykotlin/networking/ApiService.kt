@@ -29,8 +29,6 @@ interface ApiService {
     fun forecast(
         @Path("key") key: String,
         @Path("latitude") latitude: Double,
-        @Path("longitude") longitude: Double,
-        @Query("units") units: String,
-        @Query("exclude") exclude: String
+        @Path("longitude") longitude: Double
     ): Call<WeatherModel.Weather>
 }

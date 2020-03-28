@@ -31,8 +31,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
 
-const val REQUEST_COARSE_LOCATION = 5678
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -50,23 +48,14 @@ class MainActivity : AppCompatActivity() {
 
         weatherIconMap = WeatherIcons.map(this)
 
-        viewModel.getUsersCurrentLocation()
+        viewModel.fetchWeather()
 
         daily_recyclerview.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         daily_recyclerview.adapter = adapter
     }
 
     private fun addObservers() {
-        viewModel.requestLocationPermissionLiveData.observe(this, Observer { shouldRequestPermission ->
-            if (shouldRequestPermission) {
-                Timber.v("requesting permission")
-                requestPermissions()
-            }
-        })
-
-        viewModel.locationNameLiveData.observe(this, Observer { locationName ->
-            binding.currentCity = locationName
-        })
+            binding.currentCity = "New York"
 
         viewModel.darkSkyApiResponseLiveData.observe(this, Observer { darkSkyModel ->
             binding.currentTemp = darkSkyModel.currently
@@ -78,20 +67,5 @@ class MainActivity : AppCompatActivity() {
                 binding.currentIcon = weatherIconMap!![darkSkyModel.currently.icon]
             }
         })
-    }
-
-    private fun requestPermissions() {
-        ActivityCompat.requestPermissions(this,
-            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION), REQUEST_COARSE_LOCATION)
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        if (requestCode == REQUEST_COARSE_LOCATION && grantResults.isNotEmpty()
-            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Timber.v("User gave location permission, continue with getting user's last location.")
-            viewModel.getUsersCurrentLocation()
-        } else {
-            Timber.v("User refused to give location permission. Continue using the default location.")
-        }
     }
 }

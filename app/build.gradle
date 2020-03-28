@@ -25,8 +25,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField ('String', "ApiKey", API_KEY)
-            buildConfigField ('String', "Token", MAPBOX_ACCESS_TOKEN)
         }
     }
 }
@@ -58,11 +56,6 @@ dependencies {
 
     //location
     implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0'
-    implementation('com.mapbox.mapboxsdk:mapbox-android-plugin-places:0.5.0') {
-        // TODO exclude map sdk and other unnecessary transitive dependencies
-//    exclude group: 'com.mapbox.mapboxsdk', module: 'mapbox-android-sdk'
-    }
 
     //log
     implementation 'com.jakewharton.timber:timber:4.7.1'
