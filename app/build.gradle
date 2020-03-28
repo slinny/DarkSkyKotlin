@@ -19,7 +19,7 @@ android {
         enabled = true
     }
     buildTypes {
-        debug{
+        debug {
             buildConfigField 'String', "ApiKey", API_KEY
         }
         release {
@@ -45,6 +45,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     //testing
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
@@ -60,6 +61,8 @@ dependencies {
     //log
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    implementation "com.android.support:multidex:1.0.3"
+    //navigation
+    implementation"android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
 
 }
