@@ -4,7 +4,6 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.darkskykotlin.R
 import com.example.android.darkskykotlin.databinding.ListItemDailyBinding
@@ -26,7 +25,7 @@ class DailyAdapter
                 = DataBindingUtil.inflate(layoutInflater, R.layout.list_item_daily, parent, false)
 
         // Assign weather icons using context
-        weatherIcons = WeatherIcons.map(FragmentActivity())
+        weatherIcons = WeatherIcons.map(parent.context)
         return ForecastViewHolder(binding)
     }
 

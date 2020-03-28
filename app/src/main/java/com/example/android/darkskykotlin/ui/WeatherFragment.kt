@@ -11,21 +11,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-
 import com.example.android.darkskykotlin.R
 import com.example.android.darkskykotlin.adapter.DailyAdapter
 import com.example.android.darkskykotlin.databinding.FragmentWeatherBinding
 import com.example.android.darkskykotlin.util.WeatherIcons
 import com.example.android.darkskykotlin.viewmodel.WeatherViewModel
-import kotlinx.android.synthetic.main.fragment_weather.*
+import com.example.android.darkskykotlin.viewmodel.WeatherViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
  */
 class WeatherFragment : Fragment() {
-
-    private lateinit var viewModel: WeatherViewModel
 
     private var weatherIconMap: Map<String, Drawable>? = null
 
@@ -44,11 +40,15 @@ class WeatherFragment : Fragment() {
         // Set the lifecycleOwner so DataBinding can observe LiveData
         binding.setLifecycleOwner(viewLifecycleOwner)
 
-        viewModel = ViewModelProviders.of(this).get(WeatherViewModel::class.java)
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = WeatherViewModelFactory(application)
+        val weatherViewModel =
+            ViewModelProviders.of(
+                this, viewModelFactory).get(WeatherViewModel::class.java)
 
         binding.currentCity = "New York"
 
-        viewModel.darkSkyApiResponseLiveData.observe(this, Observer { weather ->
+        weatherViewModel.darkSkyApiResponseLiveData.observe(this, Observer { weather ->
             binding.currentTemp = weather.currently
 
             adapter.setDayForecast(weather.daily.data)
@@ -61,21 +61,12 @@ class WeatherFragment : Fragment() {
 
         weatherIconMap = WeatherIcons.map(this.context!!)
 
-        viewModel.fetchWeather()
+        weatherViewModel.fetchWeather()
 
         binding.dailyRecyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         binding.dailyRecyclerview.adapter = adapter
         (activity as AppCompatActivity).supportActionBar?.title = "DarkSkyWeather"
-
-//        binding.root.findViewById<RecyclerView>(R.id.daily_recyclerview).apply {
-//            layoutManager = LinearLayoutManager(context)
-//            adapter = adapter
-//        }
-
-//        daily_recyclerview.layoutManager = LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
-//        daily_recyclerview.adapter = adapter
-
 
         return binding.root
     }
