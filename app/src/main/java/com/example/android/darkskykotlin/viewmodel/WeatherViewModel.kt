@@ -20,15 +20,18 @@ import retrofit2.Response
 
 class WeatherViewModel(application: Application) : AndroidViewModel(application) {
 
-    var darkSkyApiResponseLiveData = MutableLiveData<Weather>()
+//    var darkSkyApiResponseLiveData = MutableLiveData<Weather>()
 
     private val weatherRepository = WeatherRepository(getDatabase(application))
-//    var currentLiveData = MutableLiveData<Currently>()
-//    var dailyLiveData = MutableLiveData<List<Data>>()
+    var currentLiveData = MutableLiveData<Currently>()
+    var dailyLiveData = MutableLiveData<List<Data>>()
 
     fun fetchData(){
 //        weatherRepository.fetchWeather()
-        darkSkyApiResponseLiveData = weatherRepository.fetchWeather()
+        weatherRepository.fetchWeather()
+//        darkSkyApiResponseLiveData = weatherRepository.darkSkyApiResponseLiveData
+        currentLiveData = weatherRepository.currentLiveData
+        dailyLiveData = weatherRepository.dailyLiveData
     }
 
 //    fun getCurrent():MutableLiveData<Currently>{

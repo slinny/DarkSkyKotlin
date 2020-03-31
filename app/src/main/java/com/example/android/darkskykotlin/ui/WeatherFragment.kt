@@ -53,35 +53,35 @@ class WeatherFragment : Fragment() {
 //        weatherViewModel.getCurrent()
 //        weatherViewModel.getDaily()
 
-//        weatherViewModel.currentLiveData.observe(this, Observer { currently ->
-//            binding.currentTemp = currently
-//
-////            adapter.setDayForecast(weather.daily.data)
-//
-//            // Bind the current weather icon
-//            if (currently.icon != null && weatherIconMap != null) {
-//                binding.currentIcon = weatherIconMap!![currently.icon]
-//            }
-//        })
-//
-//        weatherViewModel.dailyLiveData.observe(this, Observer { data ->
-//
-//            adapter.setDayForecast(data)
-//
-//        })
+        weatherViewModel.currentLiveData.observe(this, Observer { currently ->
+            binding.currentTemp = currently
 
-
-
-        weatherViewModel.darkSkyApiResponseLiveData.observe(this, Observer { weather ->
-            binding.currentTemp = weather.currently
-
-            adapter.setDayForecast(weather.daily.data)
+//            adapter.setDayForecast(weather.daily.data)
 
             // Bind the current weather icon
-            if (weather.currently.icon != null && weatherIconMap != null) {
-                binding.currentIcon = weatherIconMap!![weather.currently.icon]
+            if (currently.icon != null && weatherIconMap != null) {
+                binding.currentIcon = weatherIconMap!![currently.icon]
             }
         })
+
+        weatherViewModel.dailyLiveData.observe(this, Observer { data ->
+
+            adapter.setDayForecast(data)
+
+        })
+
+
+
+//        weatherViewModel.darkSkyApiResponseLiveData.observe(this, Observer { weather ->
+//            binding.currentTemp = weather.currently
+//
+//            adapter.setDayForecast(weather.daily.data)
+//
+//            // Bind the current weather icon
+//            if (weather.currently.icon != null && weatherIconMap != null) {
+//                binding.currentIcon = weatherIconMap!![weather.currently.icon]
+//            }
+//        })
 
         weatherIconMap = WeatherIcons.map(this.context!!)
 

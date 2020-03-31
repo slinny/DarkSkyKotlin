@@ -19,14 +19,15 @@ import retrofit2.Response
 
 class WeatherRepository (private val weatherDatabase: WeatherDatabase){
 
-    val darkSkyApiResponseLiveData = MutableLiveData<Weather>()
-//    private var currentLiveData = MutableLiveData<Currently?>()
-//    private var dailyLiveData = MutableLiveData<List<Data>>()
+//    val darkSkyApiResponseLiveData = MutableLiveData<Weather>()
+    val currentLiveData = MutableLiveData<Currently>()
+    val dailyLiveData = MutableLiveData<List<Data>>()
 
 //    private var repoJob = Job()
 //    private val uiScope = CoroutineScope(Dispatchers.IO + repoJob)
 
-    fun fetchWeather(): MutableLiveData<Weather> {
+//    fun fetchWeather(): MutableLiveData<Weather>
+    fun fetchWeather(){
         WeatherNetwork.apiService.forecast(
             BuildConfig.ApiKey,
             LATITUDE,
@@ -36,9 +37,9 @@ class WeatherRepository (private val weatherDatabase: WeatherDatabase){
                     if (!response.isSuccessful || response.body() == null) {
                         return
                     }
-                    darkSkyApiResponseLiveData.value = response.body()
-//                    currentLiveData.value = response.body()!!.currently
-//                    dailyLiveData.value = response.body()!!.daily.data
+//                    darkSkyApiResponseLiveData.value = response.body()
+                    currentLiveData.value = response.body()!!.currently
+                    dailyLiveData.value = response.body()!!.daily.data
 //                    uiScope.launch {
 //                        weatherDatabase.weatherDao.deleteCurrentData()
 //                        weatherDatabase.weatherDao.deleteAllDailyData()
@@ -50,7 +51,7 @@ class WeatherRepository (private val weatherDatabase: WeatherDatabase){
                 override fun onFailure(call: Call<Weather>, throwable: Throwable) {
                 }
             })
-        return darkSkyApiResponseLiveData
+//        return darkSkyApiResponseLiveData
     }
 
 //    fun getCurrent():MutableLiveData<Currently?>{
