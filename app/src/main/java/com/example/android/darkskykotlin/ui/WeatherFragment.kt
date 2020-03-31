@@ -48,6 +48,30 @@ class WeatherFragment : Fragment() {
 
         binding.currentCity = "New York"
 
+        weatherViewModel.fetchData()
+
+//        weatherViewModel.getCurrent()
+//        weatherViewModel.getDaily()
+
+//        weatherViewModel.currentLiveData.observe(this, Observer { currently ->
+//            binding.currentTemp = currently
+//
+////            adapter.setDayForecast(weather.daily.data)
+//
+//            // Bind the current weather icon
+//            if (currently.icon != null && weatherIconMap != null) {
+//                binding.currentIcon = weatherIconMap!![currently.icon]
+//            }
+//        })
+//
+//        weatherViewModel.dailyLiveData.observe(this, Observer { data ->
+//
+//            adapter.setDayForecast(data)
+//
+//        })
+
+
+
         weatherViewModel.darkSkyApiResponseLiveData.observe(this, Observer { weather ->
             binding.currentTemp = weather.currently
 
@@ -61,12 +85,14 @@ class WeatherFragment : Fragment() {
 
         weatherIconMap = WeatherIcons.map(this.context!!)
 
-        weatherViewModel.fetchWeather()
+//        weatherViewModel.fetchWeather()
 
         binding.dailyRecyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         binding.dailyRecyclerview.adapter = adapter
         (activity as AppCompatActivity).supportActionBar?.title = "DarkSkyWeather"
+
+//        weatherViewModel.cancelJob()
 
         return binding.root
     }
