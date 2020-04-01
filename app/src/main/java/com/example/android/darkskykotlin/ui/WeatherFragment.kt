@@ -50,13 +50,8 @@ class WeatherFragment : Fragment() {
 
         weatherViewModel.fetchData()
 
-//        weatherViewModel.getCurrent()
-//        weatherViewModel.getDaily()
-
         weatherViewModel.currentLiveData.observe(this, Observer { currently ->
             binding.currentTemp = currently
-
-//            adapter.setDayForecast(weather.daily.data)
 
             // Bind the current weather icon
             if (currently.icon != null && weatherIconMap != null) {
@@ -70,22 +65,7 @@ class WeatherFragment : Fragment() {
 
         })
 
-
-
-//        weatherViewModel.darkSkyApiResponseLiveData.observe(this, Observer { weather ->
-//            binding.currentTemp = weather.currently
-//
-//            adapter.setDayForecast(weather.daily.data)
-//
-//            // Bind the current weather icon
-//            if (weather.currently.icon != null && weatherIconMap != null) {
-//                binding.currentIcon = weatherIconMap!![weather.currently.icon]
-//            }
-//        })
-
         weatherIconMap = WeatherIcons.map(this.context!!)
-
-//        weatherViewModel.fetchWeather()
 
         binding.dailyRecyclerview.layoutManager =
             LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)

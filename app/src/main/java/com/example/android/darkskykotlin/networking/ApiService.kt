@@ -1,6 +1,7 @@
 package com.example.android.darkskykotlin.networking
 
 import com.example.android.darkskykotlin.vo.Weather
+import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,7 +19,9 @@ interface ApiService {
         @Path("key") key: String,
         @Path("latitude") latitude: Double,
         @Path("longitude") longitude: Double
-    ): Call<Weather>
+    ):
+//            Deferred<Weather>
+            Call<Weather>
 }
 
 object WeatherNetwork {

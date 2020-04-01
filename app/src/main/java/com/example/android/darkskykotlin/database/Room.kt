@@ -28,8 +28,8 @@ interface WeatherDao {
 }
 
 
-
-@Database(entities = [Data::class,Currently::class], version = 1)
+@Database(entities = [Data::class, Currently::class], version = 1)
+//@Database(entities = [Data::class,Currently::class], version = 1)
 abstract class WeatherDatabase: RoomDatabase() {
     abstract val weatherDao:WeatherDao
 }
