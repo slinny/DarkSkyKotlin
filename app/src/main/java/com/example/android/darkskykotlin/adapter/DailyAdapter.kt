@@ -8,17 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.darkskykotlin.R
 import com.example.android.darkskykotlin.databinding.ListItemDailyBinding
 import com.example.android.darkskykotlin.util.WeatherIcons
-import com.example.android.darkskykotlin.vo.WeatherModel
+import com.example.android.darkskykotlin.vo.Data
 import timber.log.Timber
 import java.text.SimpleDateFormat
-import java.util.*
-
 
 
 class DailyAdapter
     : RecyclerView.Adapter<DailyAdapter.ForecastViewHolder>() {
 
-    private var dailyWeatherDataList: MutableList<WeatherModel.Data> = mutableListOf()
+    private var dailyWeatherDataList: MutableList<Data> = mutableListOf()
     private lateinit var weatherIcons: Map<String, Drawable>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ForecastViewHolder {
@@ -51,12 +49,12 @@ class DailyAdapter
         holder.binding.executePendingBindings()
     }
 
-    fun setDayForecast(dayForecast: MutableList<WeatherModel.Data>?) {
+    fun setDayForecast(dayForecast: List<Data>) {
         if (dayForecast == null) {
             Timber.e("dayForecast list passed in is null.")
             return
         }
-        this.dailyWeatherDataList = dayForecast
+        this.dailyWeatherDataList = dayForecast as MutableList<Data>
         notifyDataSetChanged()
     }
 

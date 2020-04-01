@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -19,14 +18,12 @@ android {
         enabled = true
     }
     buildTypes {
-        debug{
+        debug {
             buildConfigField 'String', "ApiKey", API_KEY
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField ('String', "ApiKey", API_KEY)
-            buildConfigField ('String', "Token", MAPBOX_ACCESS_TOKEN)
         }
     }
 }
@@ -47,6 +44,7 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.1.0"
 
     //testing
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
@@ -58,15 +56,30 @@ dependencies {
 
     //location
     implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:9.0.0'
-    implementation('com.mapbox.mapboxsdk:mapbox-android-plugin-places:0.5.0') {
-        // TODO exclude map sdk and other unnecessary transitive dependencies
-//    exclude group: 'com.mapbox.mapboxsdk', module: 'mapbox-android-sdk'
-    }
 
     //log
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    implementation "com.android.support:multidex:1.0.3"
+    //navigation
+    implementation"android.arch.navigation:navigation-fragment-ktx:$navigationVersion"
+    implementation "android.arch.navigation:navigation-ui-ktx:$navigationVersion"
+
+    // moshi for parsing the JSON format
+    def moshi_version = "1.6.0"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    // coroutines for getting off the UI thread
+    def coroutines = "1.0.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+
+    // Room dependency
+    def room_version = "2.1.0-beta01"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
 
 }
